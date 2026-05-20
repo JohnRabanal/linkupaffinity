@@ -1,5 +1,6 @@
 package com.example.linkupaffinity.screens.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -29,6 +30,20 @@ import com.example.linkupaffinity.screens.register.RegisterActivity
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 🔥 STEP 1: Check if a working session already exists before rendering the login screen
+        val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false)
+
+        if (isLoggedIn) {
+            // User is already remembered! Redirect to dashboard immediately
+            val intent = Intent(this, DashboardActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+            finish()
+            return // Stop execution of the rest of onCreate
+        }
 
         val loginPresenter = LoginPresenter()
 
@@ -76,7 +91,6 @@ fun LinkupAffinityLoginView(presenter: LoginContract.Presenter) {
             override fun navigateToDashboard() {
                 Toast.makeText(context, "Login Successful!", Toast.LENGTH_SHORT).show()
 
-                // 🔥 FIXED: Direct cleanly to dashboard and strip login activity out of the backstack
                 val intent = Intent(context, DashboardActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
@@ -87,8 +101,6 @@ fun LinkupAffinityLoginView(presenter: LoginContract.Presenter) {
             override fun navigateToSignUp() {
                 val intent = Intent(context, RegisterActivity::class.java)
                 context.startActivity(intent)
-
-                // 🔥 FIXED: Finish this instance so "Sign In" link works on the register view without stacking
                 (context as? ComponentActivity)?.finish()
             }
 

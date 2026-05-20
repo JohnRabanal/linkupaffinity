@@ -41,6 +41,10 @@ class DashboardActivity : ComponentActivity() {
     }
 
     fun performLogout() {
+        // 🔥 CLEAR SESSION PREFERENCE: So they can actually stay logged out
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
         val intent = Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

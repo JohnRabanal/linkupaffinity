@@ -50,7 +50,7 @@ class LoginPresenter : LoginContract.Presenter {
         // Hardcoded developer admin fallback
         val isAdmin = identifierText == "admin@linkup.com" && passwordText == "secure_p@ssw0rd!1"
 
-        // 🔥 FIXED: Read the correct keys saved by RegisterPresenter
+        // Read the correct keys saved by RegisterPresenter
         val isRegisteredUser = context?.let { ctx ->
             val prefs = ctx.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
@@ -63,10 +63,15 @@ class LoginPresenter : LoginContract.Presenter {
         } ?: false
 
         if (isAdmin || isRegisteredUser) {
-            // Option: Handle saving 'Remember Me' state here if checked
-            if (isRememberMeChecked && context != null) {
-                val prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-                prefs.edit().putBoolean("REMEMBER_ME", true).apply()
+            // 🔥 FIXED: Handles auto-login by writing to "UserSession" matching LoginActivity's check
+            if (context != null) {
+                val sessionPrefs = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+                if (isRememberMeChecked) {
+                    sessionPrefs.edit().putBoolean("IS_LOGGED_IN", true).apply()
+                } else {
+                    // If they unchecked it, make sure previous sessions are cleared out
+                    sessionPrefs.edit().putBoolean("IS_LOGGED_IN", false).apply()
+                }
             }
 
             // Direct successfully logged-in user to dashboard
