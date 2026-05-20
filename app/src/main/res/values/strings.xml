@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">LinkUpAffinity</string>
-    <string name="username_label">Username</string>
-    <string name="password_label">Password</string>
+    <string name="app_name">LinkupAffinity</string>
+    <string name="app_logo">App Logo</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
-    <string name="remember_me">Remember me</string>
-    <string name="forgot_password">Forgot?</string>
-    <string name="sign_up_footer">Don\'t have an account? Sign up</string>
+    <string name="sign_up_prompt">Don\'t have an account? Sign up</string>
 </resources>
