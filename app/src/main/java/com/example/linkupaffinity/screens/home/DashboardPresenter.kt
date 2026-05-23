@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 
 class DashboardPresenter : DashboardContract.Presenter {
     private var view: DashboardContract.View? = null
-    // Changed to SupervisorJob() to keep the scope healthy if individual tasks cancel
+
     private val presenterScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     override fun attachView(view: DashboardContract.View) {
@@ -20,11 +20,11 @@ class DashboardPresenter : DashboardContract.Presenter {
     override fun loadDashboardContent() {
         view?.showLoading()
 
-        // Simulating network delay to showcase your custom loading state spinner
+
         presenterScope.launch {
             delay(1500)
 
-            // 🔥 FIXED: Passing explicit counts to separate the numbers from row titles
+
             view?.showDashboardData(
                 userName = "User",
                 upcomingEventTitle = "Team Building Picnic",

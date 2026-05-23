@@ -9,7 +9,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Directly route the application window root to open your completed Login Activity screen automatically
+
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()

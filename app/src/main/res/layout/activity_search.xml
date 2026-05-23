@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/etFilterSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_filter_search"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/llFilterContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Interests:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <CheckBox android:id="@+id/cbPhotography" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Photography" />
+            <CheckBox android:id="@+id/cbCooking" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cooking" />
+            <CheckBox android:id="@+id/cbReading" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reading" />
+            <CheckBox android:id="@+id/cbGardening" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gardening" />
+            <CheckBox android:id="@+id/cbPainting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Painting" />
+            <CheckBox android:id="@+id/cbHiking" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hiking" />
+            <CheckBox android:id="@+id/cbWriting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Writing" />
+            <CheckBox android:id="@+id/cbCoding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Coding" />
+            <CheckBox android:id="@+id/cbDancing" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dancing" />
+            <CheckBox android:id="@+id/cbVolunteering" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Volunteering" />
+            <CheckBox android:id="@+id/cbCycling" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cycling" />
+            <CheckBox android:id="@+id/cbPodcasting" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Podcasting" />
+        </LinearLayout>
+    </ScrollView> <Button
+    android:id="@+id/btnApplyFilters"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Apply Filters"
+    android:layout_marginTop="20dp" />
+
+</LinearLayout>

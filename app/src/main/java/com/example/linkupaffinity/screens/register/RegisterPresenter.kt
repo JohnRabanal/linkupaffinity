@@ -81,7 +81,7 @@ class RegisterPresenter(
         updateView()
     }
 
-    // 🔥 FIX 1: Handle actual local validation checking and direct navigation on success
+
     override fun onCreateAccountClicked() {
         if (firstName.isBlank() || lastName.isBlank()) {
             view?.showRegistrationError("Please enter your full name.")

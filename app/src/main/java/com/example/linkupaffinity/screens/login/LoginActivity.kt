@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.linkupaffinity.R
-import com.example.linkupaffinity.screens.register.RegisterActivity
 import com.example.linkupaffinity.screens.home.DashboardActivity
+import com.example.linkupaffinity.screens.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,13 +17,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // 1. Initialize Views
+
         val usernameInput = findViewById<EditText>(R.id.edittextUsername)
         val passwordInput = findViewById<EditText>(R.id.edittextPassword)
         val loginCard = findViewById<CardView>(R.id.cardLogin)
         val signUpText = findViewById<TextView>(R.id.textviewSignUp)
 
-        // 2. Login Logic
+
         loginCard.setOnClickListener {
             val user = usernameInput.text.toString()
             val pass = passwordInput.text.toString()
@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
             if (user.isNotEmpty() && pass.isNotEmpty()) {
                 Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show()
 
-                // Navigate to Dashboard
+                // Navigate to Dashboard and clear back stack
                 val intent = Intent(this, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
@@ -43,8 +43,15 @@ class LoginActivity : AppCompatActivity() {
 
         // 3. Sign Up Logic
         signUpText.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
+    }
+
+
+    private fun performLogout() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

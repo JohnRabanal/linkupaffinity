@@ -31,7 +31,7 @@ interface RegisterContract {
         fun onCreateAccountClicked()
         fun navigateBackToLogin()
 
-        // ADD THESE THREE METHOD DEFINITIONS HERE TO FIX THE PRESENTER ERRORS:
+
         fun onCourseDropdownToggled(expanded: Boolean)
         fun onTogglePasswordVisibility()
         fun onToggleConfirmPasswordVisibility()

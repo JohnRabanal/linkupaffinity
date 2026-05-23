@@ -13,7 +13,7 @@ import androidx.core.widget.doOnTextChanged
 import com.example.linkupaffinity.R
 import com.example.linkupaffinity.screens.login.LoginActivity
 
-// 1. Have the Activity implement the view interface directly
+
 class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
     private lateinit var presenter: RegisterPresenter
@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // 2. Pass 'this' (Activity Context) to the Presenter constructor
+
         presenter = RegisterPresenter(this)
 
         // Bind cleanly to our custom XML layout views
